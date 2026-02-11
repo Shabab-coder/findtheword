@@ -211,3 +211,12 @@
 
     box-shadow: none;
 }
+
+.author{
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    color: white;
+    text-align: center;
+}
