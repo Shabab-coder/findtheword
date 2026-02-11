@@ -1,0 +1,208 @@
+*{
+    margin:0px;
+    padding:0px;
+    background-color: black;
+}
+.container{
+    display:flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    border: 2px solid rgb(187, 185, 185);
+    width: 250px;
+    height: auto;
+    padding: 40px;
+    align-items: center;
+    /* background-color: rgb(78, 76, 76); */
+}
+.inputs{
+    display: flex;
+
+    /* border: 2px solid red; */
+}
+.inputs input{
+    outline:none;
+    width: 100px;
+    height: 30px;
+    padding: 5px; 
+    font-size: 25px;
+    letter-spacing: 5px;
+    border: 2px solid rgb(80, 77, 77);
+    color: white;
+    text-align: center;
+}
+.container > :nth-child(n+2){
+    margin-top: 10px;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.correct{
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgb(164, 163, 163);
+    margin-left: 40px;  
+    border-radius: 50px;
+    margin-top:auto;
+    margin-bottom: auto;
+    /* background-color: rgb(15, 181, 15); */
+    /* background-color: rgb(164, 163, 163); */
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.incorrect{
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgb(164, 163, 163);
+    margin-left: 10px;
+    border-radius: 50px;
+    margin-top: auto;
+    margin-bottom:auto;
+    /* background-color: rgb(255, 255, 0); */
+    /* background-color:rgb(164, 163, 163); */
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.typewriter {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
+.typewriter h1{
+    color: white;
+    font-family: monospace;
+    font-size: 1.5rem;
+    margin-inline: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    border:none;
+    border-right: 5px solid rgb(255, 255, 255);
+    padding-right: 5px; /* Adds space between text and border */
+    box-sizing: border-box; /* Ensures border is inside the element's width */
+    animation: typing 3s steps(22) forwards, blink 1s step-end infinite;
+}
+
+@keyframes typing{
+    from{
+        width: 0;
+    }
+    to{
+        width: 100%;
+    }
+}
+
+@keyframes blink{
+    50%{
+        border-color: transparent;
+    }
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+
+.decision{
+    position: fixed;
+    color:white;
+    border: 2px solid red;
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+
+}
+
+.decision button{
+    color: white;
+    width: 100px;
+    border: 2px solid white;
+    height: 40px;
+    font-size: 20px;
+
+}
+
+.warning{
+    position: fixed;
+    border: 2px solid blue;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    color: white;
+    width: 265px;
+    height: 50px;
+    text-align: center;
+    opacity: 0;
+    z-index: 200;
+    transition: opacity 1s ease;
+}
+
+.warning p{
+    margin-top: 5px;
+    /* border: 2px solid green; */
+}
+
+.visible{
+    opacity: 1;
+}
+
+/* @media only screen and (max-width: 600px) {
+    .decision{
+        color:white;
+        border: 2px solid red;
+        width: 400px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        z-index: 100;
+        top: 50;
+        left: 50px;
+    }
+} */
+
+
+.refresh{
+    border: 2px solid white;
+    color: white;
+    width: 50px;
+    height: 20px;
+    padding: 10px;
+    box-shadow: 3px 3px 0px 0px rgb(255, 255, 255);
+    transition: box-shadow 0.2s;
+    cursor: pointer;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-390%, -645%);
+    z-index: 100;
+}
+
+.refresh:active{
+
+    box-shadow: none;
+}
