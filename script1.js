@@ -143,6 +143,13 @@ function showWarning(){
 }, 4000);
 }
 
+function wrongInputWarning(elem){
+    elem.classList.add("wrongInput");
+    setTimeout(function(){
+        elem.classList.remove("wrongInput");
+    }, 2000);
+}
+
 async function fetchNewWord() {
   const res = await fetch("/api/new-word", { cache: "no-store" });
   const data = await res.json();
@@ -189,6 +196,7 @@ function setupgamelisteners(){
             else if (e.key === "Enter"){
                 console.log("warning");
                 showWarning();
+                wrongInputWarning(elem);
             }
         });
     });

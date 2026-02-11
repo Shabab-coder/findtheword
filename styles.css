@@ -31,6 +31,11 @@
     border: 2px solid rgb(80, 77, 77);
     color: white;
     text-align: center;
+    transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+.inputs input.wrongInput{
+    border-color: red;
+    color: red;
 }
 .container > :nth-child(n+2){
     margin-top: 10px;
