@@ -13,9 +13,10 @@ function numberOfChar(inputValue){
     let wordArr = [...inputValue.value];
     for (let i of wordArr){
         if(arr.includes(i.toLowerCase())){
+
             return 0;
         }
-        arr.push(i);
+        arr.push(i.toLowerCase());
     }
     return 1;
 }
