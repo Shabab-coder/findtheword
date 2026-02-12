@@ -12,7 +12,7 @@ function numberOfChar(inputValue){
     let arr = [];
     let wordArr = [...inputValue.value];
     for (let i of wordArr){
-        if(arr.includes(i)){
+        if(arr.includes(i.toLowerCase())){
             return 0;
         }
         arr.push(i);
@@ -165,8 +165,9 @@ function setupgamelisteners(){
     let count = 0;
     allInputs.forEach(function(elem, index){
         elem.addEventListener("keydown", function(e){
-            if (e.key === "Enter" && elem.value.length === 4 && checkLetters(elem) && numberOfChar(elem)){
+            if (e.key === "Enter" && elem.value.length === 4 && checkLetters(elem) && numberOfChar(elem) && checkNumbers(elem)){
                 // clear(index);
+                elem.value = elem.value.toUpperCase();
                 isValid = check(elem, index, word);
                 if (!isValid && index + 1 < lengthOfArray){
                     allDivs[index+1].classList.remove("hidden");
