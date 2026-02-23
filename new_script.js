@@ -172,7 +172,7 @@ async function fetchNewWord(length) {
   if (!res.ok) throw new Error("Failed to fetch word");
   const data = await res.json();
 
-  // Ensure uppercase + trimmed
+
   return (data.word || "").toString().trim().toUpperCase();
 }
 
@@ -204,7 +204,6 @@ function setupgamelisteners(){
                     allInputs[index+1].disabled = false; 
                     allInputs[index+1].focus();
                     elem.disabled = true;
-                    console.log("index: "+ index + " Validity: " + isValid);
                     decisionModal.click();
                 }
                 else if (count === 7  && !isValid){
@@ -212,7 +211,6 @@ function setupgamelisteners(){
                     containerElement.style.filter = "blur(5px)";
                     containerElement.style.pointerEvents = "none";
                     decisionText.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;You Lost ! <br> Word is " + word;
-                    console.log("index: "+ index + " Validity: " + isValid);
                     decisionModal.click();
                     elem.disabled = true;
                 }
@@ -222,15 +220,12 @@ function setupgamelisteners(){
                     containerElement.style.filter = "blur(5px)";
                     containerElement.style.pointerEvents = "none";
                     decisionModal.style.borderColor = "green";
-                    console.log("index: "+ index + " Validity: " + isValid);
                 }
-                console.log(count);
                 count++;
                 
                 
             }
             else if (e.key === "Enter"){
-                console.log("warning");
                 showWarning();
                 wrongInputWarning(elem);
             }
@@ -259,7 +254,6 @@ window.addEventListener("load", async function () {
     const selectedLength = getSelectedLength();
     updateInputLength(selectedLength);
     word = await fetchNewWord(selectedLength);
-    console.log("Secret word loaded:", word); // remove later (this is cheating)
     
     setupgamelisteners();
     
@@ -296,7 +290,6 @@ lengthSelect.addEventListener("change", async function () {
     resetBoard();
     updateInputLength(selectedLength);
     word = await fetchNewWord(selectedLength);
-    console.log("New word loaded:", word); // remove later (this is cheating)
 });
 
 function resetBoard() {
