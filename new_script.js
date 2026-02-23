@@ -19,9 +19,7 @@ function numberOfChar(inputValue){
     let arr = [];
     let wordArr = [...inputValue.value];
     for (let i of wordArr){
-        console.log("Iterating number check")
         if(arr.includes(i.toLowerCase())){
-            console.log("character check");
             return 0;
         }
         arr.push(i.toLowerCase());
@@ -61,8 +59,6 @@ function check(inputValue, index, word){
     inputValue.value = inputValue.value.toUpperCase();
     if (inputValue.value !== word){
         const letterInput = [...inputValue.value];
-        console.log(inputValue.value);
-        console.log(letterInput);
         for (let i of letterInput){
             if (!unique.includes(i)){
                 if (lettersWord.includes(i)){
@@ -141,7 +137,6 @@ decisionButton.addEventListener("click", function(){
 
 document.addEventListener("keydown", function(e){
     if(e.key===" " && !decisionModal.classList.contains("hidden")){
-        console.log("triggered");
         decisionButton.click();
     }
 
@@ -158,7 +153,6 @@ function showWarning(){
 }
 
 function wrongInputWarning(elem){
-    console.log("wrong input");
     elem.classList.add("wrongInput");
     elem.classList.add("shake");
     setTimeout(function(){
@@ -206,8 +200,7 @@ function setupgamelisteners(){
                     allInputs[index+1].disabled = false; 
                     allInputs[index+1].focus();
                     elem.disabled = true;
-                    console.log("index: "+ index + " Validity: " + isValid);
-                    decisionModal.click();
+                    // decisionModal.click();
                 }
                 // else if (count === 7  && !isValid){
                 //     decisionModal.classList.remove("hidden");
@@ -243,13 +236,11 @@ function setupgamelisteners(){
                 containerElement.style.pointerEvents = "none";
                 decisionModal.style.borderColor = "green";
                 }
-                console.log(count);
                 count++;
                 
                 
             }
             else if (e.key === "Enter"){
-                console.log("warning");
                 showWarning();
                 wrongInputWarning(elem);
             }
@@ -279,7 +270,6 @@ window.addEventListener("load", async function () {
         const selectedLength = getSelectedLength();
         updateInputLength(selectedLength);
         word = await fetchNewWord(selectedLength);
-        console.log("Secret word loaded:", word); // remove later (this is cheating)
         
         setupgamelisteners();
         
@@ -308,7 +298,6 @@ window.addEventListener("load", async function () {
 lengthSelect.addEventListener("change", async function () {
     const selectedLength = parseInt(this.value, 10);
 
-    // update URL (no reload)
     const url = new URL(window.location.href);
     url.searchParams.set("length", selectedLength);
     history.replaceState(null, "", url.pathname + url.search);
@@ -316,7 +305,6 @@ lengthSelect.addEventListener("change", async function () {
     resetBoard();
     updateInputLength(selectedLength);
     word = await fetchNewWord(selectedLength);
-    console.log("New word loaded:", word); // remove later (this is cheating)
 });
 
 function resetBoard() {
@@ -338,7 +326,7 @@ function resetBoard() {
     for (let i = 0; i < allInputs.length; i++) clear(i);
 
     decisionModal.classList.add("hidden");
-    decisionModal.style.borderColor = "red";   // ✅ ADD THIS
+    decisionModal.style.borderColor = "red"; 
     containerElement.style.filter = "";
     containerElement.style.pointerEvents = "";
 }
