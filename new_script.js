@@ -320,26 +320,66 @@ lengthSelect.addEventListener("change", async function () {
     word = await fetchNewWord(selectedLength);
 });
 
+// function resetBoard() {
+//     const allDivs = document.querySelectorAll(".container .inputs");
+//     const allInputs = document.querySelectorAll(".container .inputs input");
+
+//     allDivs.forEach((row, i) => {
+//         if (i === 0) row.classList.remove("hidden");
+//         else row.classList.add("hidden");
+//     });
+
+//     allInputs.forEach((inp, i) => {
+//         inp.value = "";
+//         inp.disabled = i !== 0;
+//     });
+
+//     allInputs[0].focus();
+
+//     for (let i = 0; i < allInputs.length; i++) clear(i);
+
+//     decisionModal.classList.add("hidden");
+//     decisionModal.style.borderColor = "red"; 
+//     containerElement.style.filter = "";
+//     containerElement.style.pointerEvents = "";
+// }
+
 function resetBoard() {
     const allDivs = document.querySelectorAll(".container .inputs");
     const allInputs = document.querySelectorAll(".container .inputs input");
 
+    const selectedLength = getSelectedLength();
+    const maxAttempts = (selectedLength === 5) ? 10 : 8;
+
     allDivs.forEach((row, i) => {
-        if (i === 0) row.classList.remove("hidden");
-        else row.classList.add("hidden");
+
+        // First remove any previous mode classes
+        row.classList.remove("not-used");
+
+        if (i >= maxAttempts) {
+            // Completely remove extra rows for this mode
+            row.classList.add("not-used");
+        } else {
+            // Rows part of this mode
+            if (i === 0) {
+                row.classList.remove("hidden");
+            } else {
+                row.classList.add("hidden");
+            }
+        }
     });
 
     allInputs.forEach((inp, i) => {
         inp.value = "";
-        inp.disabled = i !== 0;
+        inp.disabled = (i !== 0) || (i >= maxAttempts);
     });
 
     allInputs[0].focus();
 
-    for (let i = 0; i < allInputs.length; i++) clear(i);
+    for (let i = 0; i < maxAttempts; i++) clear(i);
 
     decisionModal.classList.add("hidden");
-    decisionModal.style.borderColor = "red"; 
+    decisionModal.style.borderColor = "red";
     containerElement.style.filter = "";
     containerElement.style.pointerEvents = "";
 }

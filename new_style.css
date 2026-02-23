@@ -133,6 +133,11 @@
 .hidden{ 
     visibility: hidden; 
 } 
+.not-used{ 
+    display: none; 
+
+}
+
 .decision{ 
     position: fixed; 
     color:white; 
