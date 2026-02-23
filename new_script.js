@@ -19,9 +19,7 @@ function numberOfChar(inputValue){
     let arr = [];
     let wordArr = [...inputValue.value];
     for (let i of wordArr){
-        console.log("Iterating number check")
         if(arr.includes(i.toLowerCase())){
-            console.log("character check");
             return 0;
         }
         arr.push(i.toLowerCase());
@@ -61,8 +59,6 @@ function check(inputValue, index, word){
     inputValue.value = inputValue.value.toUpperCase();
     if (inputValue.value !== word){
         const letterInput = [...inputValue.value];
-        console.log(inputValue.value);
-        console.log(letterInput);
         for (let i of letterInput){
             if (!unique.includes(i)){
                 if (lettersWord.includes(i)){
@@ -141,7 +137,6 @@ decisionButton.addEventListener("click", function(){
 
 document.addEventListener("keydown", function(e){
     if(e.key===" " && !decisionModal.classList.contains("hidden")){
-        console.log("triggered");
         decisionButton.click();
     }
 
@@ -158,7 +153,6 @@ function showWarning(){
 }
 
 function wrongInputWarning(elem){
-    console.log("wrong input");
     elem.classList.add("wrongInput");
     elem.classList.add("shake");
     setTimeout(function(){
