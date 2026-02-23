@@ -1,18 +1,12 @@
-<!-- 
- Developed By: A K M Shabab Ibrahim
- Designed By: Nazia Kamal Neha
- 
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="new_style.css">
     <link rel="icon" href="data:,">
-    <script defer src="script1.js"></script>
+    <script defer src="new_script.js"></script>
 </head>
 <body>
     <div class="typewriter">
@@ -23,62 +17,74 @@
     <div class = "warning">
         <p>Make sure you are not using any number and use exactly 4 unique letters </p>
     </div>
-    <div class = "refresh">
-        Refresh
-    </div>
-    <div class="container">
-        <div class="inputs">
-            <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
-            <div class="correct">0</div>
-            <div class="incorrect">0</div>
-        </div>
-        
-        <div class="inputs hidden">
-            <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
-            <div class="correct">0</div>
-            <div class="incorrect">0</div>
-        </div>
+    <div class="main-wrapper">
+        <div class="container">
+            <div class="inputs">
+                <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
+                <div class="correct">0</div>
+                <div class="incorrect">0</div>
+            </div>
+            
+            <div class="inputs hidden">
+                <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
+                <div class="correct">0</div>
+                <div class="incorrect">0</div>
+            </div>
 
-        <div class="inputs hidden">
-            <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
-            <div class="correct">0</div>
-            <div class="incorrect">0</div>
-        </div>
+            <div class="inputs hidden">
+                <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
+                <div class="correct">0</div>
+                <div class="incorrect">0</div>
+            </div>
 
-        <div class="inputs hidden">
-            <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
-            <div class="correct">0</div>
-            <div class="incorrect">0</div>
-        </div>
+            <div class="inputs hidden">
+                <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
+                <div class="correct">0</div>
+                <div class="incorrect">0</div>
+            </div>
 
-        <div class="inputs hidden">
-            <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
-            <div class="correct">0</div>
-            <div class="incorrect">0</div>
-        </div>
-        
-        <div class="inputs hidden">
-            <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
-            <div class="correct">0</div>
-            <div class="incorrect">0</div>
-        </div>
+            <div class="inputs hidden">
+                <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
+                <div class="correct">0</div>
+                <div class="incorrect">0</div>
+            </div>
+            
+            <div class="inputs hidden">
+                <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
+                <div class="correct">0</div>
+                <div class="incorrect">0</div>
+            </div>
 
-        <div class="inputs hidden">
-            <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
-            <div class="correct">0</div>
-            <div class="incorrect">0</div>
-        </div>
+            <div class="inputs hidden">
+                <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
+                <div class="correct">0</div>
+                <div class="incorrect">0</div>
+            </div>
 
-        <div class="inputs hidden">
-            <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
-            <div class="correct">0</div>
-            <div class="incorrect">0</div>
+            <div class="inputs hidden">
+                <input type="text" minlength="4" maxlength="4" class="uppercase" autofocus>
+                <div class="correct">0</div>
+                <div class="incorrect">0</div>
+            </div>
+            
         </div>
-        
+        <div class = "features">
+            <div class = "refresh">
+                Refresh
+            </div>
+            <div class="word-length-selector">
+                <label for="wordLength">Word Length:</label>
+                <select id="wordLength">
+                    <option value="4" selected>4 Letters</option>
+                    <option value="5">5 Letters</option>
+                    <!-- <option value="6">6 Letters</option> -->
+                </select>
+            </div>
+        </div>
     </div>
     <div class = "author">
-        <p>Developed by: A K M Shabab Ibrahim</p>
-        <p>Desgined by: Nazia Kamal Neha</p>
+        <p>Developed by A K M Shabab Ibrahim</p>
+        <p>Designed by Nazia Kamal Neha</p>
     </div>
     <div class="decision hidden">
         <h1>You Won!</h1>
