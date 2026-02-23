@@ -250,10 +250,23 @@ function setupgamelisteners(){
 
 let refreshButton = document.querySelector(".refresh");
 
-refreshButton.addEventListener("click", function () {
-  const url = new URL(window.location.href);
-  url.searchParams.set("nocache", Date.now());
-  window.location.href = url.toString();
+// refreshButton.addEventListener("click", function () {
+//   const url = new URL(window.location.href);
+//   url.searchParams.set("nocache", Date.now());
+//   window.location.href = url.toString();
+// });
+
+refreshButton.addEventListener("click", async function () {
+    const selectedLength = getSelectedLength(); 
+
+    resetBoard();
+    updateInputLength(selectedLength);
+
+    word = await fetchNewWord(selectedLength);
+    console.log("New word loaded:", word); // remove later
+    const url = new URL(window.location.href);
+    url.searchParams.set("length", selectedLength);
+    history.replaceState(null, "", url.pathname + url.search);
 });
 
 // window.addEventListener("load", function () {
