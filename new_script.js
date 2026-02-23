@@ -9,6 +9,9 @@ const lengthSelect = document.getElementById("wordLength");
 
 let word_length = 4;
 
+function getMaxAttempts() {
+  return getSelectedLength() === 5 ? 10 : 8;
+}
 
 
 function getSelectedLength() {
@@ -186,7 +189,7 @@ function updateInputLength(length) {
 function setupgamelisteners(){
     let allDivs = document.querySelectorAll(".container .inputs");
     let allInputs = document.querySelectorAll(".container .inputs input");
-    let lengthOfArray = allInputs.length;
+    let lengthOfArray = getMaxAttempts();
     let count = 0;
     allInputs.forEach(function(elem, index){
         elem.addEventListener("keydown", function(e){
