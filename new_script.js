@@ -19,7 +19,9 @@ function numberOfChar(inputValue){
     let arr = [];
     let wordArr = [...inputValue.value];
     for (let i of wordArr){
+        console.log("Iterating number check")
         if(arr.includes(i.toLowerCase())){
+            console.log("character check");
             return 0;
         }
         arr.push(i.toLowerCase());
@@ -59,6 +61,8 @@ function check(inputValue, index, word){
     inputValue.value = inputValue.value.toUpperCase();
     if (inputValue.value !== word){
         const letterInput = [...inputValue.value];
+        console.log(inputValue.value);
+        console.log(letterInput);
         for (let i of letterInput){
             if (!unique.includes(i)){
                 if (lettersWord.includes(i)){
@@ -137,6 +141,7 @@ decisionButton.addEventListener("click", function(){
 
 document.addEventListener("keydown", function(e){
     if(e.key===" " && !decisionModal.classList.contains("hidden")){
+        console.log("triggered");
         decisionButton.click();
     }
 
@@ -153,6 +158,7 @@ function showWarning(){
 }
 
 function wrongInputWarning(elem){
+    console.log("wrong input");
     elem.classList.add("wrongInput");
     elem.classList.add("shake");
     setTimeout(function(){
@@ -166,7 +172,7 @@ async function fetchNewWord(length) {
   if (!res.ok) throw new Error("Failed to fetch word");
   const data = await res.json();
 
-
+  // Ensure uppercase + trimmed
   return (data.word || "").toString().trim().toUpperCase();
 }
 
@@ -192,34 +198,58 @@ function setupgamelisteners(){
         elem.addEventListener("keydown", function(e){
             if (e.key === "Enter" && elem.value.length === word.length && checkLetters(elem) && numberOfChar(elem)){
                 // clear(index);
-                isValid = check(elem, index, word);
+                const currentWord = word;
+                isValid = check(elem, index, currentWord);
+                
                 if (!isValid && index + 1 < lengthOfArray){
                     allDivs[index+1].classList.remove("hidden");
                     allInputs[index+1].disabled = false; 
                     allInputs[index+1].focus();
                     elem.disabled = true;
+                    console.log("index: "+ index + " Validity: " + isValid);
                     decisionModal.click();
                 }
-                else if (count === 7  && !isValid){
+                // else if (count === 7  && !isValid){
+                //     decisionModal.classList.remove("hidden");
+                    
+                //     containerElement.style.filter = "blur(5px)";
+                //     containerElement.style.pointerEvents = "none";
+                //     decisionText.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;You Lost ! <br> Word is " + currentWord;
+                //     console.log("index: "+ index + " Validity: " + isValid);
+                //     // decisionModal.click();
+                //     decisionModal.style.borderColor = "red";
+                //     elem.disabled = true;
+                // }
+                // else{
+                //     elem.disabled=true;
+                //     decisionModal.classList.remove("hidden");
+                //     containerElement.style.filter = "blur(5px)";
+                //     containerElement.style.pointerEvents = "none";
+                //     decisionModal.style.borderColor = "green";
+                //     console.log("index: "+ index + " Validity: " + isValid);
+                // }
+                else if (index === lengthOfArray - 1 && !isValid){
                     decisionModal.classList.remove("hidden");
                     containerElement.style.filter = "blur(5px)";
                     containerElement.style.pointerEvents = "none";
-                    decisionText.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;You Lost ! <br> Word is " + word;
-                    decisionModal.click();
+                    decisionText.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;You Lost ! <br> Word is " + currentWord;
+                    decisionModal.style.borderColor = "red";
                     elem.disabled = true;
                 }
-                else{
-                    elem.disabled=true;
-                    decisionModal.classList.remove("hidden");
-                    containerElement.style.filter = "blur(5px)";
-                    containerElement.style.pointerEvents = "none";
-                    decisionModal.style.borderColor = "green";
+                else if (isValid){
+                elem.disabled = true;
+                decisionModal.classList.remove("hidden");
+                containerElement.style.filter = "blur(5px)";
+                containerElement.style.pointerEvents = "none";
+                decisionModal.style.borderColor = "green";
                 }
+                console.log(count);
                 count++;
                 
                 
             }
             else if (e.key === "Enter"){
+                console.log("warning");
                 showWarning();
                 wrongInputWarning(elem);
             }
@@ -244,23 +274,25 @@ refreshButton.addEventListener("click", function () {
 let word = ""; 
 
 window.addEventListener("load", async function () {
-  try {
-    const selectedLength = getSelectedLength();
-    updateInputLength(selectedLength);
-    word = await fetchNewWord(selectedLength);
-    
-    setupgamelisteners();
-    
-    // const cleanUrl = window.location.pathname;
-    // history.replaceState(null, "", cleanUrl);
-    const url = new URL(window.location.href);
-    url.searchParams.delete("nocache");
-    history.replaceState(null, "", url.pathname + url.search);
-  } catch (err) {
-    console.error(err);
-    // optional: show a message on screen
-    alert("Could not load a new word. Is your server running?");
-  }
+
+    try {
+        const selectedLength = getSelectedLength();
+        updateInputLength(selectedLength);
+        word = await fetchNewWord(selectedLength);
+        console.log("Secret word loaded:", word); // remove later (this is cheating)
+        
+        setupgamelisteners();
+        
+        // const cleanUrl = window.location.pathname;
+        // history.replaceState(null, "", cleanUrl);
+        const url = new URL(window.location.href);
+        url.searchParams.delete("nocache");
+        history.replaceState(null, "", url.pathname + url.search);
+    } catch (err) {
+        console.error(err);
+        // optional: show a message on screen
+        alert("Could not load a new word. Is your server running?");
+    }
 });
 
 // lengthSelect.addEventListener("change", function () {
@@ -284,10 +316,10 @@ lengthSelect.addEventListener("change", async function () {
     resetBoard();
     updateInputLength(selectedLength);
     word = await fetchNewWord(selectedLength);
+    console.log("New word loaded:", word); // remove later (this is cheating)
 });
 
 function resetBoard() {
-
     const allDivs = document.querySelectorAll(".container .inputs");
     const allInputs = document.querySelectorAll(".container .inputs input");
 
@@ -303,11 +335,10 @@ function resetBoard() {
 
     allInputs[0].focus();
 
-    // reset counts (you already have clear(index))
     for (let i = 0; i < allInputs.length; i++) clear(i);
 
-    // hide modal / blur reset if you use it
     decisionModal.classList.add("hidden");
+    decisionModal.style.borderColor = "red";   // ✅ ADD THIS
     containerElement.style.filter = "";
     containerElement.style.pointerEvents = "";
 }
