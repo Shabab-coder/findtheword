@@ -186,6 +186,16 @@ function updateInputLength(length) {
     });
 }
 
+function resetListeners() {
+  const inputs = document.querySelectorAll(".container .inputs input");
+
+  inputs.forEach((input) => {
+    const clone = input.cloneNode(true);      // copy element (no listeners)
+    input.parentNode.replaceChild(clone, input);
+  });
+}
+
+
 function setupgamelisteners(){
     let allDivs = document.querySelectorAll(".container .inputs");
     let allInputs = document.querySelectorAll(".container .inputs input");
@@ -320,6 +330,8 @@ lengthSelect.addEventListener("change", async function () {
 
     resetBoard();
     updateInputLength(selectedLength);
+    resetListeners();
+    setupgamelisteners();
     word = await fetchNewWord(selectedLength);
 });
 
